@@ -1,121 +1,125 @@
 <h1>{{ collection.title }}</h1>
 
-<header id="header" class="anchor">
+<main>
 
-  <img id="big-image" ng-src="{{ collection.image.src }}">
+  <header id="header" class="anchor">
 
-  <a class="footer-link" ng-if="isVisible('header')">Discover <em>the</em> Collection</a>
+    <img id="big-image" ng-src="{{ collection.image.src }}">
 
-</header>
+    <a class="footer-link" ng-if="isVisible('header')">Discover <em>the</em> Collection</a>
 
-<article id="{{ product.handle }}" class="anchor" ng-repeat="product in products">
+  </header>
 
-  <figure ng-click="showCaption( product )" ng-swipe-left="showNextImage( product )" ng-swipe-right="showPreviousImage( product )" ng-style="product.figurePosition">
+  <article id="{{ product.handle }}" class="anchor" ng-repeat="product in products">
 
-    <img id="big-image" ng-src="{{ image.src }}" ng-repeat="image in product.images" ng-if="isImageVisible( product , $index )">
+    <figure ng-click="showCaption( product )" ng-swipe-left="showNextImage( product )" ng-swipe-right="showPreviousImage( product )" ng-style="product.figurePosition">
 
-  </figure>
+      <img id="big-image" ng-src="{{ image.src }}" ng-repeat="image in product.images" ng-if="isImageVisible( product , $index )">
 
-  <figcaption ng-if="product.caption">
+    </figure>
 
-    <h2>{{ product.title }}</h2>
+    <figcaption ng-if="product.caption">
 
-    <small>{{ product.variants[0].price | currency | price }}</small>
+      <h2>{{ product.title }}</h2>
 
-    <button class="purchase">Purchase</button>
-
-    <button class="inquire">Inquire</button>
-
-    <p>{{ product.body_html }}</p>
-
-  </figcaption>
-
-  <div class="footer-link" ng-if="isVisible( product.handle )">
-
-    <a id="index-icon-link" href="#index">
-
-      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="96">
-
-        <rect x="26" y="43" width="3" height="3"></rect>
-        <rect x="32" y="43" width="3" height="3"></rect>
-        <rect x="38" y="43" width="3" height="3"></rect>
-        <rect x="26" y="48" width="3" height="3"></rect>
-        <rect x="32" y="48" width="3" height="3"></rect>
-        <rect x="38" y="48" width="3" height="3"></rect>
-        <rect x="26" y="53" width="3" height="3"></rect>
-        <rect x="32" y="53" width="3" height="3"></rect>
-        <rect x="38" y="53" width="3" height="3"></rect>
-
-      </svg>
-
-    </a>
-
-    <a id="footer-product-link" ng-click="showCaption( product )">
-
-      {{ product.title }}
       <small>{{ product.variants[0].price | currency | price }}</small>
 
-    </a>
+      <button class="purchase">Purchase</button>
+
+      <button class="inquire">Inquire</button>
+
+      <p>{{ product.body_html }}</p>
+
+    </figcaption>
+
+    <div class="footer-link" ng-if="isVisible( product.handle )">
+
+      <a id="index-icon-link" href="#index">
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="96">
+
+          <rect x="26" y="43" width="3" height="3"></rect>
+          <rect x="32" y="43" width="3" height="3"></rect>
+          <rect x="38" y="43" width="3" height="3"></rect>
+          <rect x="26" y="48" width="3" height="3"></rect>
+          <rect x="32" y="48" width="3" height="3"></rect>
+          <rect x="38" y="48" width="3" height="3"></rect>
+          <rect x="26" y="53" width="3" height="3"></rect>
+          <rect x="32" y="53" width="3" height="3"></rect>
+          <rect x="38" y="53" width="3" height="3"></rect>
+
+        </svg>
+
+      </a>
+
+      <a id="footer-product-link" ng-click="showCaption( product )">
+
+        {{ product.title }}
+        <small>{{ product.variants[0].price | currency | price }}</small>
+
+      </a>
+
+    </div>
+
+  </article>
+
+  <div id="biography" class="anchor">
+
+    <div id="biography-heading">{{ collection.title }}</div>
+
+    <div class="biography-paragraph">{{ collection.description }}</div>
+
+    <a href="#biography" class="footer-link" ng-if="isVisible('biography')">Biography</a>
 
   </div>
 
-</article>
+  <nav id="index" class="anchor">
 
-<div id="biography" class="anchor">
+    <a ng-repeat="product in products" href="#{{ product.handle }}">
 
-  <div id="biography-heading">{{ collection.title }}</div>
+      <img ng-src="{{ product.images[0].src }}">
 
-  <div class="biography-paragraph">{{ collection.description }}</div>
+    </a>
 
-  <a href="#biography" class="footer-link" ng-if="isVisible('biography')">Biography</a>
+    <a href="#subscribe" class="footer-link" ng-if="isVisible('index')">Index</a>
 
-</div>
+  </nav>
 
-<nav id="index" class="anchor">
+  <nav id="designers" class="anchor">
 
-  <a ng-repeat="product in products" href="#{{ product.handle }}">
+    <a class="desinger-link" ng-href="/{{ collection.handle }}" ng-repeat="collection in collections">
 
-    <img ng-src="{{ product.images[0].src }}">
+      <img ng-src="{{ collection.image.src }}">
 
-  </a>
+      {{ collection.title }}
 
-  <a href="#subscribe" class="footer-link" ng-if="isVisible('index')">Index</a>
+    </a>
 
-</nav>
+    <a href="#designers" class="footer-link" ng-if="isVisible('designers')">Designers</a>
 
-<nav id="designers" class="anchor">
+  </nav>
 
-  <a class="desinger-link" ng-href="/{{ collection.handle }}" ng-repeat="collection in collections">
+  <form id="subscribe" class="anchor">
 
-    <img ng-src="{{ collection.image.src }}">
+    <input type="email" placeholder="Your e-mail address">
 
-    {{ collection.title }}
+    <input type="submit" value="Subscribe">
 
-  </a>
+    <a href="#designers" class="footer-link" ng-if="isVisible('subscribe')">Subscribe</a>
 
-  <a href="#designers" class="footer-link" ng-if="isVisible('designers')">Designers</a>
+  </form>
 
-</nav>
+  <footer>
 
-<form id="subscribe" class="anchor">
+    <i>Illustrations by <a href="#">Myriam Van Damme</a></i>
 
-  <input type="email" placeholder="Your e-mail address">
+    <i>Deep space photographs by <a href="http://hubblesite.org/">Hubble</a></i>
 
-  <input type="submit" value="Subscribe">
+  </footer>
 
-  <a href="#designers" class="footer-link" ng-if="isVisible('subscribe')">Subscribe</a>
+</main>
 
-</form>
-
-<footer>
-
-  <i>Illustrations by <a href="#">Myriam Van Damme</a></i>
-
-  <i>Deep space photographs by <a href="http://hubblesite.org/">Hubble</a></i>
-
-</footer>
-
-<nav id="menu" ng-if="menu">
+<nav id="menu">
 
   <a href="/lfrank/" class="menu-designer">LFrank</a>
   <a href="/jacquie-aiche/" class="menu-designer">Jacquie Aiche</a>

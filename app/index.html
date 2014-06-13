@@ -22,14 +22,16 @@
         font: 100 0 'Proxima Nova Condensed', sans-serif;
         -webkit-text-size-adjust: none;
         letter-spacing: 1px;
-        background: #efefef;
         text-align: center;
+        background: #000;
         height: 100%;
         color: #333;
         margin: 0;
       }
 
       h1 {
+        -webkit-transform: translate3d(0,0,0);
+
         font: 100 italic 17px/44px 'Didot', sans-serif;
         text-transform: lowercase;
         position: fixed;
@@ -45,6 +47,7 @@
       header {
         height: -webkit-calc(100% - 96px);
         height: calc(100% - 96px);
+        background: #efefef;
         position: relative;
       }
 
@@ -496,12 +499,21 @@ transform: rotate(180deg);}
 
       #menu {
 
-        position: fixed;
+        -webkit-transition: all ease-in-out 1s;
+        -webkit-transform: translateY(-150%);
         background: #efefef;
+        padding-top: 44px;
+        position: fixed;
         z-index: 30;
         right: 0;
         left: 0;
         top: 0;
+
+      }
+
+      .menu #menu {
+
+        -webkit-transform: translateY(0);
 
       }
 
@@ -510,12 +522,18 @@ transform: rotate(180deg);}
         letter-spacing: 4px;
         font-size: 11px;
         color: #333;
-        border-top: 1px dotted #333;
+        border-bottom: 1px dotted #333;
         line-height: 33px;
         display: block;
         text-decoration: none;
         text-transform: uppercase;
-        box-sizing: border-box;
+        margin: 0 64px;
+
+      }
+
+      #menu .menu-designer:first-of-type {
+
+        border-top: 1px solid #bbb;
 
       }
 
@@ -528,11 +546,7 @@ transform: rotate(180deg);}
         display: inline-block;
         text-decoration: none;
         text-transform: uppercase;
-        width: 33%;
-        width: -webkit-calc(33% - (128px / 3));
-        width: calc(33% - (128px / 3));
-        border-top: 1px dotted #333;
-        border-bottom: 1px dotted #333;
+        width: 33.33%;
 
       }
 
@@ -555,22 +569,18 @@ transform: rotate(180deg);}
 
       }
 
-      #menu {
+      main {
 
-        -webkit-transition: all linear 5s;
-
-
-      }
-
-      #menu.ng-enter, #menu.ng-leave.ng-leave-active {
-
-        -webkit-transform: translateY( -100% );
+        -webkit-transition: all ease-in-out 1s;
+        -webkit-filter: blur(0px);
+        opacity: 1;
 
       }
 
-      #menu.ng-enter-active, #menu.ng-leave {
+      .menu main {
 
-        -webkit-transform: translateY( 0 );
+        -webkit-filter: blur(10px);
+        opacity: 0.5;
 
       }
 
@@ -587,7 +597,7 @@ transform: rotate(180deg);}
 
     <script>
 
-      var altar = angular.module( 'altar' , [ 'ngRoute' , 'ngTouch' , 'ngAnimate' ] )
+      var altar = angular.module( 'altar' , [ 'ngRoute' , 'ngTouch' ] )
 
       .config( [ '$routeProvider' , '$locationProvider' , '$anchorScrollProvider' , function( $routeProvider , $locationProvider , $anchorScrollProvider ) {
 
