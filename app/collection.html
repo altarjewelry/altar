@@ -60,14 +60,27 @@
 
   </ul>
 
+  <ul>
 
+    <li>
 
+      <a href="/services">Services</a>
 
+    </li>
 
+    <li>
 
-  <a href="/services" class="menu-services">Services</a>
-  <a href="mailto:sara@altarjewelry.com" class="menu-contact">Contact</a>
-  <a href="/about" class="menu-about">About</a>
+      <a href="mailto:sara@altarjewelry.com">Contact</a>
+
+    </li>
+
+    <li>
+
+      <a href="/about">About</a>
+
+    </li>
+
+  </ul>
 
 </nav>
 
@@ -75,33 +88,113 @@
 
   <header>
 
-    <img src="http://cdn.shopify.com/s/files/1/0510/7477/collections/lfrank.jpg">
+    <img ng-src="{{ collection.image.src }}">
 
   </header>
 
-  <article>
+  <article ng-repeat="product in products">
 
-    <figure>
+    <figure ng-click="product.caption = !product.caption">
 
-      <img src="http://cdn.shopify.com/s/files/1/0510/7477/products/altar-lfrank-diamond-paisley-coral-drop-earrings-001.jpg">
-
-    </figure>
-
-  </article>
-
-  <article>
-
-    <figure>
-
-      <img src="http://cdn.shopify.com/s/files/1/0510/7477/products/altar-lfrank-diamond-slice-gold-lotus-earrings-002.jpg">
+      <img ng-src="{{ image.src }}" ng-repeat="image in product.images">
 
     </figure>
 
+    <figcaption ng-if="product.caption">
+
+      <h2>
+
+        {{ product.title }}
+
+      </h2>
+
+      <small>
+
+        {{ product.variants[0].price | currency | price }}
+
+      </small>
+
+      <button>
+
+        Purchase
+
+      </button>
+
+      <a href="mailto:s@altarjewelry.com">
+
+        Inquire
+
+      </a>
+
+      <p>
+
+        {{ product.body_html }}
+
+      </p>
+
+    </figcaption>
+
   </article>
+
+  <aside>
+
+    <h3>
+
+      {{ collection.title }}
+
+    </h3>
+
+    <p>
+
+      {{ collection.description }}
+
+    </p>
+
+  </aside>
+
+  <nav>
+
+    <a ng-href="#{{ product.handle }}" ng-repeat="product in products">
+
+      <img ng-src="{{ product.images[0].src }}">
+
+    </a>
+
+  </nav>
+
+  <nav>
+
+    <a ng-href="/{{ collection.handle }}" ng-repeat="collection in collections">
+
+      <img ng-src="{{ collection.image.src }}">
+
+    </a>
+
+  </nav>
+
+  <form>
+
+    <input type="email" placeholder="Your e-mail address">
+
+    <input type="submit" value="Subscribe">
+
+  </form>
+
+  <footer>
+
+    <i>Illustrations by <a href="#">Myriam Van Damme</a></i>
+
+    <i>Deep space photographs by <a href="http://hubblesite.org/">Hubble</a></i>
+
+  </footer>
 
 </main>
 
-<footer></footer>
+<footer>
+
+  Discover the collection
+
+</footer>
 
 <div class="flow-into">
 
