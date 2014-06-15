@@ -16,10 +16,10 @@ html {
 
 body {
 
-  font: 100 0 'Proxima Nova Condensed', sans-serif;
+  font: 100 0 'Proxima Nova Condensed' , sans-serif;
   text-align: center;
   background: #000;
-  font-size: 0;
+  color: #333;
   margin: 0;
 
 }
@@ -144,6 +144,7 @@ body > nav ul:last-child {
 
 body > nav ul:last-child li {
 
+  -webkit-transform: translateY( -1px );
   display: inline-block;
   line-height: 44px;
   min-width: 100px;
@@ -182,6 +183,18 @@ main article figure {
 
 }
 
+main header img,
+main article figure img {
+
+  -webkit-align-self: center;
+  -webkit-flex-shrink: 0;
+  max-height: 100%;
+  max-width: 100%;
+
+}
+
+main article figcaption:before,
+main article figcaption:after,
 main aside:before,
 main aside:after,
 main nav:last-of-type:before,
@@ -195,6 +208,7 @@ main nav:last-of-type:after {
 
 }
 
+main article figcaption:before,
 main aside:before,
 main nav:last-of-type:before {
 
@@ -202,6 +216,7 @@ main nav:last-of-type:before {
 
 }
 
+main article figcaption:after,
 main aside:after,
 main nav:last-of-type:after {
 
@@ -215,14 +230,8 @@ main nav:last-of-type:after {
 
 main header {
 
-  -webkit-align-items: center;
+  -webkit-justify-content: center;
   background: #efefef;
-
-}
-
-main header img {
-
-  width: 100%;
 
 }
 
@@ -243,11 +252,72 @@ main article figure {
 
 }
 
-main article figure img {
+main article figcaption {
 
-  -webkit-align-self: center;
-  -webkit-flex-shrink: 0;
-  width: 100%;
+  background: #efefef;
+  color: #333;
+
+}
+
+main article figcaption h2 {
+
+  font: 100 23px/1.5 'AW Conqueror Didot', 'Didot', serif;
+  border-bottom: 1px solid #333;
+  text-transform: uppercase;
+  padding: 3em 0 .5em 0;
+  margin: 0 6.25%;
+
+}
+
+main article figcaption small,
+main article figcaption button,
+main article figcaption a {
+
+  font: 100 11px/44px 'Proxima Nova Condensed', sans-serif;
+  text-transform: uppercase;
+  display: inline-block;
+  letter-spacing: 4px;
+  width: 29.17%;
+
+}
+
+main article figcaption small,
+main article figcaption a {
+
+  font-size: 13px;
+
+}
+
+main article figcaption button {
+
+  -webkit-appearance: none;
+  vertical-align: top;
+  border-radius: 0;
+  background: #000;
+  cursor: pointer;
+  color: #efefef;
+  outline: none;
+  padding: 0;
+  border: 0;
+  margin: 0;
+
+}
+
+main article figcaption a {
+
+  text-decoration: none;
+  color: #333;
+
+}
+
+main article figcaption p {
+
+  border-top: 1px solid #000;
+  margin: 0 6.25% 4em 6.25%;
+  letter-spacing: 1px;
+  line-height: 1.5em;
+  padding-top: 1em;
+  font-size: 15px;
 
 }
 
@@ -426,7 +496,34 @@ body > footer {
 
 
 
-/* Blurred Footer Styles */
+/* Menu open styles */
+
+.menu > footer,
+.menu .flow-into {
+
+  -webkit-filter: blur(6px);
+
+}
+
+.menu .flow-into {
+
+  opacity: 0.5;
+
+}
+
+
+
+/* Landscape Media Queries */
+
+@media orientation : landscape {
+
+
+
+}
+
+
+
+/* Blurred Footer Styles for Safari Only */
 
 .flow-into,
 body > footer  {
@@ -465,22 +562,5 @@ main {
   -webkit-flow-into: content;
   overflow-y: auto;
   height: 100%;
-
-}
-
-
-
-/* Menu open styles */
-
-.menu > footer,
-.menu .flow-into {
-
-  -webkit-filter: blur(6px);
-
-}
-
-.menu .flow-into {
-
-  opacity: 0.5;
 
 }

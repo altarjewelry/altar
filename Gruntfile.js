@@ -17,9 +17,11 @@ module.exports = function( grunt ) {
       server: {
 
         options: {
-          base: 'app',
-          open: true,
-          livereload: true
+
+          base : 'app',
+          open : true,
+          livereload : true
+
         },
 
       },
